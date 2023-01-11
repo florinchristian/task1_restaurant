@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState} from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import styles from './styles';
+import BookTableModal from "./modals/BookTableModal";
+
+const App = () => {
+    const [availableTables, setAvailableTables] = useState(0);
+    const [bookTableModalVisible, setBookTableModalVisible] = useState(true);
+
+    return (
+        <div style={styles.container}>
+            <BookTableModal
+                visible={bookTableModalVisible}
+                closeModal={() => setBookTableModalVisible(false)}
+            />
+
+            <h1>Fancy restaurant</h1>
+
+            <p>Available tables: {availableTables}</p>
+
+            <button onClick={() => setBookTableModalVisible(true)}>Book your table</button>
+        </div>
+    );
+};
 
 export default App;
